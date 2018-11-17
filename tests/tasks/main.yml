@@ -23,14 +23,15 @@
     that:
     - not _docker_package.changed
 
-- debug: msg="{{ item.image }} || {{ item.container }} || {{ item.src }}"
+- name: debug docker container variables
   with_items: "{{ targeted_distributions }}"
+  debug: msg="{{ item.image }} || {{ item.container }} || {{ item.src }}"
 
 - name: docker images does exist
   with_items: "{{ targeted_distributions }}"
   docker_image:
     name: "{{ item.image }}"
-    path: "{{ ansible_env.CI_BUILD_DIR + '/files/' + item.src }}"
+    path: "{{ role_path + '/files/' + item.src }}"
     state: present
 
 - name: docker containers are running
