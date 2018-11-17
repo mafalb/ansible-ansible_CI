@@ -31,7 +31,7 @@
   with_items: "{{ targeted_distributions }}"
   docker_image:
     name: "{{ item.image }}"
-    path: "{{ role_path + '/files/' + item.src }}"
+    path: "{{ role_path + '/../files/' + item.src }}"
     state: present
 
 - name: docker containers are running
