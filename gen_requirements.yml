@@ -3,6 +3,6 @@
 
 - hosts: localhost
   roles:
-    - role: mafalb.ansible_ci
+    - role: mafalb.ansible_ci/requirements
 
 ...
