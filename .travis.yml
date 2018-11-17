@@ -18,7 +18,7 @@ before_install:
   - ls -lR tests/
   - ansible --version
   - ansible localhost -m setup
-  - ansible-playbook -b -D -t all,debug requirements.yml
+  - ansible-playbook -b -D -t all,debug gen_requirements.yml
   - ansible-playbook -b -D -t all,debug before_install.yml
 install:
   - ansible-playbook -b -D -t all,debug install.yml
