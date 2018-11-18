@@ -16,13 +16,12 @@ before_install:
   - export ANSIBLE_CI_BRANCH=$TRAVIS_BRANCH CI_BUILD_DIR=$TRAVIS_BUILD_DIR
   - sudo apt-add-repository --yes ppa:ansible/ansible-${targeted_ansible_version} && sudo apt-get update
   - sudo apt-get install ansible
-  - sudo pip install docker
   - dpkg -l
   - pip list
   - ansible --version
   - ansible localhost -m setup
-  - ansible-playbook -b -D -t all,debug before_install.yml
   - ls -lR roles
+  - ansible-playbook -b -D -t all,debug before_install.yml
 install:
   - ansible-playbook -b -D -t all,debug install.yml
 script:
