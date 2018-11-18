@@ -9,8 +9,4 @@
   src: https://github.com/mafalb/ansible-docker
   version: origin/dev
 
-- name: mafalb.ansible_ci
-  src: https://github.com/mafalb/ansible-ansible_ci
-  version: origin/dev
-
 ...
