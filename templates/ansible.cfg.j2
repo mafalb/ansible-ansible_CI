@@ -1,11 +1,11 @@
 [defaults]
-[defaults]
 
 {% if (ansible_version.major|int == 2) and (ansible_version.minor|int > 4) %}
 stdout_callback = yaml
 {% endif %}
 gathering = smart
 hash_behaviour = merge
+roles_path = roles
 
 [ssh_connection]
 pipelining = True
