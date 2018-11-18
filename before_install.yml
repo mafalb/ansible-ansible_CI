@@ -15,8 +15,13 @@
         dest: roles/{{ ansible_env.ANSIBLE_ROLE_NAME }}
         state: link
 
-- hosts: localhost
-  roles:
-    - role: mafalb.ansible_ci
+    - name: requirements are installed
+      command: ansible-galaxy install -r {{ role_path }}/requirements.yml -p roles
+
+    - name: ansible.cfg does exist
+      template:
+        src: ansible.cfg.j2
+        dest: ansible.cfg
+        backup: true
 
 ...
