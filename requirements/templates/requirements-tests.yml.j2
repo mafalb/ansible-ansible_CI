@@ -1,6 +1,0 @@
-# vi: set ft=yaml ts=2:
----
-
-- name: ansible_dockerfiles
-  src: https://github.com/mafalb/ansible_dockerfiles
-  version: origin/{{ (ansible_env.ANSIBLE_CI_BRANCH == 'master')|ternary('master','dev') }}

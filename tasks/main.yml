@@ -4,9 +4,20 @@
 - name: ansible.cfg does exist
   template:
     src: ansible.cfg.j2
-    dest: /etc/ansible/ansible.cfg
+    dest: ansible.cfg
     backup: true
+
+- name: directory for roles does exist
+  file:
+    path: roles
+    state: directory
+
+- name: symlink to CI_BUILD_DIR does exist
+  file:
+    src: "{{ ansible_env.CI_BUILD_DIR }}"
+    dest: roles/{{ ansible_env.ANSIBLE_ROLE_NAME }}
+    state: link
 
 - name: install requirements
   check_mode: false
-  command: ansible-galaxy install -r {{ role_path }}/requirements.yml -p /etc/ansible/roles
+  command: ansible-galaxy install -r {{ role_path }}/requirements.yml -p roles
