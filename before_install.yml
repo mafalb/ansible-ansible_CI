@@ -3,7 +3,7 @@
 
 
 - hosts: localhost
-  pre_tasks:
+  tasks:
     - name: directory for roles does exist
       file:
         path: roles
@@ -15,6 +15,7 @@
         dest: roles/{{ ansible_env.ANSIBLE_ROLE_NAME }}
         state: link
 
+- hosts: localhost
   roles:
     - role: mafalb.ansible_ci
 
