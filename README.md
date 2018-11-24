@@ -8,11 +8,14 @@
   roles:
     - role: ansible_ci
     - role: ansible_ci/node/docker
-      image_name: testnode1
+      container_name: centos_testnode1
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      image_name: centos_image1
       src: centos-7
       recreate: true
 
-- hosts: testnode1
+- hosts: centos_testnode1
   tasks:
     - name: whatever you want to test
       assert:
