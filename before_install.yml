@@ -3,7 +3,25 @@
 
 
 - hosts: localhost
-  roles:
-    - role: mafalb.ansible_ci/before_install
+  tasks:
+    - name: directory for roles does exist
+      file:
+        path: roles
+        state: directory
+
+    - name: symlink to CI_BUILD_DIR does exist
+      file:
+        src: "{{ ansible_env.CI_BUILD_DIR }}"
+        dest: roles/{{ ansible_env.ANSIBLE_ROLE_NAME }}
+        state: link
+
+    - name: requirements are installed
+      command: ansible-galaxy install -g -r requirements.yml -p roles
+
+    - name: ansible.cfg does exist
+      template:
+        src: ansible.cfg.j2
+        dest: ansible.cfg
+        backup: true
 
 ...
