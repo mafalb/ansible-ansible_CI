@@ -25,10 +25,10 @@ before_install:
 install:
   - ansible-playbook -b -D -t all,debug install.yml
 script:
-  - ansible-lint --force-color before_install.yml
-  - ansible-lint --force-color install.yml
-  - ansible-lint --force-color tests/test.yml
-  - ansible-lint --force-color tests/idempotency.yml
+  - ansible-lint --force-color -v before_install.yml
+  - ansible-lint --force-color -v install.yml
+  - ansible-lint --force-color -v tests/test.yml
+  - ansible-lint --force-color -v tests/idempotency.yml
   - ansible-playbook -D -t all,debug tests/test.yml
   - ansible-playbook -D -t all,debug tests/idempotency.yml | tee /tmp/idempotence.tee
   - "! grep -E 'ok=.*changed=[^0].*unreachable=.*failed=' /tmp/idempotence.tee"
