@@ -2,18 +2,13 @@
 ---
 
 - name: create centos-7 containers
+  vars:
+    - docker_assume_already_installed: true
   hosts: localhost
   roles:
-    - role: ansible_ci
+    - role: mafalb.ansible_ci/install
     - role: ansible_ci/node/docker
       container_name: centos_testnode1
-      volumes:
-        - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      image_name: centos_image1
-      src: centos-7
-
-    - role: ansible_ci/node/docker
-      container_name: centos_testnode2
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup:ro
       image_name: centos_image1
