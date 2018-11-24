@@ -1,0 +1,30 @@
+# vim: set ft=yaml ts=2:
+---
+
+- name: assertions
+  assert:
+    that:
+      - not: ansible_ci.node.recreate
+      - container_name
+      - image_name
+      - volumes
+
+- name: docker images is present
+  docker_image:
+    name: "{{ image_name }}"
+    path: "{{ role_path + '/files/' + src }}"
+    state: present
+
+- name: docker container is started
+  docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image_name }}"
+    volumes: "{{ volumes|default([]) }}"
+    state: started
+
+- name: add containers to inventory
+  changed_when: false
+  add_host:
+    groups: testnodes
+    name: "{{ container_name }}"
+    ansible_connection: docker

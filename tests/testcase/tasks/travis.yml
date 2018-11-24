@@ -1,0 +1,14 @@
+# vim: set ft=yaml ts=2:
+---
+
+- name: check docker version on travis-CI
+  check_mode: true
+  package:
+    name: docker-ce
+    state: present
+  register: _docker_package
+
+- name: assert that the correct docker package is installed on travis-CI
+  assert:
+    that:
+    - not _docker_package.changed

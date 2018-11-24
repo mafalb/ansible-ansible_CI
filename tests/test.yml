@@ -1,8 +1,8 @@
 
 ---
-- hosts: localhost
-  roles:
-    - role: mafalb.ansible_ci/tests
+
+- name: run local tests
+  hosts: localhost
 
   tasks:
     - name: check LICENSE file
@@ -15,12 +15,26 @@
         name: mafalb.ansible_ci/tests/testcase
         tasks_from: t02
 
-    - name: check that containers are running
+    - name: check LICENSE file
+      when:
+        - ansible_env.CI == 'travis'
       include_role:
         name: mafalb.ansible_ci/tests/testcase
-        tasks_from: t03
+        tasks_from: travis
 
-- hosts: testnodes
+- name: create a centos-7 container
+  hosts: localhost
+  roles:
+    - role: ansible_ci/node/docker
+      container_name: centos_testnode1
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      image_name: centos_image1
+      src: centos-7
+
+- hosts: centos_testnode1
   tasks:
     - name: debug variables
-      debug: var=hostvars[inventory_hostname]
+      assert:
+        that:
+          - ansible_distribution == 'CentOS'
