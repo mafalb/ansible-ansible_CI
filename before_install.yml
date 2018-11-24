@@ -15,13 +15,6 @@
         dest: roles/{{ ansible_env.ANSIBLE_ROLE_NAME }}
         state: link
 
-    # skip this for ansible-lint
-    #
-    - name: requirements are installed
-      tags:
-        - skip_ansible_lint
-      command: ansible-galaxy install -g -r requirements.yml -p roles
-
     - name: ansible.cfg does exist
       template:
         src: ansible.cfg.j2
