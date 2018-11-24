@@ -4,7 +4,6 @@
 - name: assertions
   assert:
     that:
-      - not: ansible_ci.node.recreate
       - container_name
       - image_name
       - volumes
@@ -21,6 +20,7 @@
     image: "{{ image_name }}"
     volumes: "{{ volumes|default([]) }}"
     state: started
+    recreate: "{{ recreate|default(false) }}"
 
 - name: add containers to inventory
   changed_when: false

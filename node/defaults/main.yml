@@ -1,6 +1,0 @@
-# vim: set ft=yaml ts=2:
----
-
-ansible_ci:
-  node:
-    recreate: false

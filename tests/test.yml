@@ -38,3 +38,32 @@
       assert:
         that:
           - ansible_distribution == 'CentOS'
+
+    - name: create a file
+      copy:
+        content: bla
+        path: /tmp/bla
+        state: present
+
+    - name: assert that the file does exist
+      file:
+        path: /tmp/bla
+        state: present
+
+- name: recreate the centos-7 container
+  hosts: localhost
+  roles:
+    - role: ansible_ci/node/docker
+      container_name: centos_testnode1
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      image_name: centos_image1
+      src: centos-7
+      recreate: true
+
+- hosts: centos_testnode1
+  tasks:
+    - name: assert that the file does exist
+      file:
+        path: /tmp/bla
+        state: absent
