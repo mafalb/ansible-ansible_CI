@@ -6,7 +6,7 @@
   tasks:
     - name: directory for roles does exist
       file:
-        path: "{{ {{ ansible_env.CI_BUILD_DIR }}/roles }}"
+        path: "{{ ansible_env.CI_BUILD_DIR }}/roles"
         state: directory
 
     - name: symlink to CI_BUILD_DIR does exist
