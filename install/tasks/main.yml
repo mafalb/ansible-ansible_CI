@@ -3,8 +3,10 @@
 
 - name: get the docker version
   check_mode: false
+  changed_when: false
   command: docker version
   register: _docker
+
 - debug: var=ansible_env
 - debug: var=_dpkg
 - debug: var=_docker
