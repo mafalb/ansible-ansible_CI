@@ -25,5 +25,5 @@
       copy:
         content: |
           cihost ansible_connection=local
-        dest: "{{ ansible_env.CI_BUILD_DIR }}}/hosts"
+        dest: "{{ ansible_env.CI_BUILD_DIR }}/hosts"
 ...
