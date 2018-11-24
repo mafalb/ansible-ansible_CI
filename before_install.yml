@@ -18,12 +18,12 @@
     - name: ansible.cfg does exist
       template:
         src: ansible.cfg.j2
-        dest: ansible.cfg
+        dest: "{{ ansible_env.CI_BUILD_DIR }}/ansible.cfg"
         backup: true
 
     - name: inventory file does exist
       copy:
         content: |
           cihost ansible_connection=local
-        dest: hosts
+        dest: "{{ ansible_env.CI_BUILD_DIR }}}/hosts"
 ...
