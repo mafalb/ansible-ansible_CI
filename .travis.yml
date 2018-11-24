@@ -28,4 +28,4 @@ script:
   - ansible-playbook -D -t all,debug tests/idempotency.yml | tee /tmp/idempotence.tee
   - "! grep -E 'ok=.*changed=[^0].*unreachable=.*failed=' /tmp/idempotence.tee"
 after_script:
-  - pip list
+  - ls -lR
