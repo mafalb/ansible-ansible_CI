@@ -4,7 +4,7 @@
 - name: create centos-7 containers
   vars:
     - docker_assume_already_installed: true
-  hosts: localhost
+  hosts: cihost
   roles:
     - role: mafalb.ansible_ci/install
     - role: ansible_ci/node/docker

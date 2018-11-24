@@ -2,7 +2,7 @@
 ---
 
 - name: run local tests
-  hosts: localhost
+  hosts: cihost
 
   tasks:
     - name: check LICENSE file
@@ -23,7 +23,7 @@
         tasks_from: travis
 
 - name: create a centos-7 container
-  hosts: localhost
+  hosts: cihost
   roles:
     - role: ansible_ci/node/docker
       container_name: centos_testnode1
@@ -50,7 +50,7 @@
         state: file
 
 - name: recreate the centos-7 container
-  hosts: localhost
+  hosts: cihost
   roles:
     - role: ansible_ci/node/docker
       container_name: centos_testnode1

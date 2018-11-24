@@ -2,7 +2,7 @@
 ---
 
 
-- hosts: localhost
+- hosts: cihost
   tasks:
     - name: directory for roles does exist
       file:
@@ -28,4 +28,9 @@
         dest: ansible.cfg
         backup: true
 
+    - name: inventory file does exist
+      copy:
+        content: |
+          cihost ansible_connection=local
+        dest: hosts
 ...

@@ -20,7 +20,7 @@ before_install:
   - pip list
   - ansible --version
   - ansible localhost -m setup
-  - ansible-playbook -b -D -t all,debug before_install.yml
+  - ansible-playbook -b -D -t all,debug -i cihost, -c local before_install.yml
   - ls -l roles
 install:
   - ansible-playbook -b -D -t all,debug install.yml
