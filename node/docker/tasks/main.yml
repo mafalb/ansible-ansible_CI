@@ -4,11 +4,11 @@
 - name: assertions
   assert:
     that:
-      - container_name
-      - image_name
-      - volumes
+      - container_name is defined
+      - image_name is defined
+      - volumes is defined
 
-- name: docker images is present
+- name: docker image is present
   docker_image:
     name: "{{ image_name }}"
     path: "{{ role_path + '/files/' + src }}"
