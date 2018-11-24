@@ -47,7 +47,7 @@
     - name: assert that the file does exist
       file:
         path: /tmp/bla
-        state: present
+        state: file
 
 - name: recreate the centos-7 container
   hosts: localhost
