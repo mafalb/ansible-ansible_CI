@@ -15,7 +15,7 @@
         name: mafalb.ansible_ci/tests/testcase
         tasks_from: t02
 
-    - name: check LICENSE file
+    - name: check travis specific stuff
       when:
         - ansible_env.CI == 'travis'
       include_role:
@@ -43,7 +43,6 @@
       copy:
         content: bla
         dest: /tmp/bla
-        state: present
 
     - name: assert that the file does exist
       file:
