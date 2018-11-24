@@ -42,7 +42,7 @@
     - name: create a file
       copy:
         content: bla
-        path: /tmp/bla
+        dest: /tmp/bla
         state: present
 
     - name: assert that the file does exist
