@@ -6,7 +6,6 @@
     - docker_assume_already_installed: true
   hosts: localhost
   roles:
-    - role: mafalb.ansible_ci/before_install
     - role: mafalb.ansible_ci/install
     - role: ansible_ci/node/docker
       container_name: centos_testnode1
