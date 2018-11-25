@@ -6,7 +6,24 @@
     that:
       - container_name is defined
       - image_name is defined
-      - volumes is defined
+      - src is defined
+
+- debug: var=container_name
+  tags:
+    - never
+    - debug
+- debug: var=image_name
+  tags:
+    - never
+    - debug
+- debug: var=src
+  tags:
+    - never
+    - debug
+- debug: var=hostgroups|default(['testnodes'])
+  tags:
+    - never
+    - debug
 
 - name: docker image is present
   docker_image:
@@ -22,14 +39,9 @@
     state: started
     recreate: "{{ recreate|default(false) }}"
 
-- debug: var=hostgroups|default(['testnodes'])
-  tags:
-    - never
-    - debug
-
 - name: add container to inventory
   changed_when: false
   add_host:
-    groups: "{{ hostgroups|default([]) }}"
+    groups: "{{ hostgroups|default(['testnodes']) }}"
     name: "{{ container_name }}"
     ansible_connection: docker
