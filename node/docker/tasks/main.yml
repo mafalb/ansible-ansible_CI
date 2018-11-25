@@ -22,7 +22,7 @@
     state: started
     recreate: "{{ recreate|default(false) }}"
 
-- debug: var=groups|default(['testnodes'])
+- debug: var=hostgroups|default(['testnodes'])
   tags:
     - never
     - debug
@@ -30,6 +30,6 @@
 - name: add container to inventory
   changed_when: false
   add_host:
-    groups: "{{ groups|default(['testnodes']) }}"
+    groups: "{{ hostgroups|default([]) }}"
     name: "{{ container_name }}"
     ansible_connection: docker
