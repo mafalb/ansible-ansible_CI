@@ -27,7 +27,7 @@
     state: started
     recreate: "{{ recreate|default(false) }}"
 
-- name: add container to inventory
+- name: add container {{ container_name }} to inventory
   changed_when: false
   add_host:
     groups: "{{ member_of_groups|default(['testnodes']) }}"
