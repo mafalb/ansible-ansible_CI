@@ -25,6 +25,6 @@
 - name: add container to inventory
   changed_when: false
   add_host:
-    groups: "{{ groups|default('all') }}"
+    groups: "{{ groups|default(['all']) }}"
     name: "{{ container_name }}"
     ansible_connection: docker
