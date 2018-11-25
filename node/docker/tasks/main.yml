@@ -22,7 +22,7 @@
     state: started
     recreate: "{{ recreate|default(false) }}"
 
-- debug: var=groups|default['all']
+- debug: var=groups|default(['testnodes'])
   tags:
     - never
     - debug
