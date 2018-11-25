@@ -25,6 +25,7 @@
       copy:
         content: |
           cihost ansible_connection=local
+          [python3_hosts]
           [python3_hosts:vars]
           ansible_python_interpreter=/usr/bin/python3
         dest: "{{ ansible_env.CI_BUILD_DIR }}/hosts"
