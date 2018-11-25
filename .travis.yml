@@ -35,3 +35,4 @@ script:
   - "! grep -E 'ok=.*changed=[^0].*unreachable=.*failed=' /tmp/idempotence.tee"
 after_script:
   - ls -lR
+  - cat hosts

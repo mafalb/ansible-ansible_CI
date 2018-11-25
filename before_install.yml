@@ -25,7 +25,7 @@
       copy:
         content: |
           cihost ansible_connection=local
-          xenial ansible_python_interpreter=python3
-          bionic ansible_python_interpreter=python3
+          [python3_hosts:vars]
+          ansible_python_interpreter=/usr/bin/python3
         dest: "{{ ansible_env.CI_BUILD_DIR }}/hosts"
 ...
