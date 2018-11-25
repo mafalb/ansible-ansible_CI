@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 RUN apt-get update -y &&\
  DEBIAN_FRONTEND=noninteractive apt-get -y install python3-apt apt-transport-https &&\
- rm -rf /var/lib/apt/lists/*
+ rm -rf /var/lib/apt/lists && rm -f /var/lib/apt/periodic/update-success-stamp
 
 RUN rm /etc/apt/apt.conf.d/docker-clean
 RUN mkdir /etc/ansible/
