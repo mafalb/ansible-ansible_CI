@@ -3,10 +3,8 @@
 
 - name: mafalb.ansible
   src: https://github.com/mafalb/ansible-ansible
-  version: origin/dev
 
 - name: mafalb.docker
   src: https://github.com/mafalb/ansible-docker
-  version: origin/dev
 
 ...
