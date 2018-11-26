@@ -36,3 +36,4 @@ script:
 after_script:
   - ls -lR
   - cat hosts
+  - sudo docker exec -t xenial ls -l /var/lib/apt/lists/
