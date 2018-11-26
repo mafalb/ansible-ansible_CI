@@ -19,7 +19,7 @@ before_install:
   - dpkg -l
   - pip list
   - ansible --version
-  - ansible localhost -m setup
+  - ansible -i cihost, cihost -c local -m setup
   - ansible-galaxy install -g -r requirements.yml -p roles
   - ansible-playbook -b -D -t all,debug -i cihost, -c local before_install.yml
   - ls -l roles
@@ -36,3 +36,4 @@ script:
 after_script:
   - ls -lR
   - cat hosts
+  - sudo docker exec -t xenial ls -l /var/lib/apt/lists/
