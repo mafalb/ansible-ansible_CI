@@ -1,5 +1,6 @@
 ---
 
+galaxy_info: []
 dependencies:
   - role: mafalb.ansible/control_machine
   - role: mafalb.ansible/node
