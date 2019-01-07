@@ -12,6 +12,12 @@
     - name: symlink to CI_BUILD_DIR does exist
       file:
         src: "{{ ansible_env.CI_BUILD_DIR }}"
+        dest: "{{ ansible_env.CI_BUILD_DIR }}/../{{ ansible_env.ANSIBLE_ROLE_NAME }}"
+        state: link
+
+    - name: symlink to CI_BUILD_DIR does exist
+      file:
+        src: "{{ ansible_env.CI_BUILD_DIR }}"
         dest: "{{ ansible_env.CI_BUILD_DIR }}/roles/{{ ansible_env.ANSIBLE_ROLE_NAME }}"
         state: link
 
