@@ -1,6 +1,13 @@
 # vim: set ft=yaml ts=2:
 ---
 
+- debug: var="{{ item }}"
+  with_items:
+    - ansible_ci_node_image_name
+    - ansible_ci_node_type
+    - ansible_ci_test_name
+    - tests
+
 - debug: var=ansible_ci
   tags:
   - never
