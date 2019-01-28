@@ -1,0 +1,18 @@
+# vim: set ft=yaml ts=2:
+---
+
+- debug: var=ansible_ci
+  tags:
+  - never
+  - debug
+
+- name: assertions
+  assert:
+    that:
+    - ansible_ci_test_name
+    - ansible_ci_node_type
+    - ansible_ci_node_image_name
+
+- name: include tasks for node_type {{ ansible_ci.node.node_type }}
+  include_tasks:
+    file: "{{ ansible_ci.node.node_type }}.yml"

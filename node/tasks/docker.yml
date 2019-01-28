@@ -1,0 +1,28 @@
+# vim: set ft=yaml ts=2:
+---
+
+- debug: var=ansible_ci.node.member_of_groups
+  tags:
+    - never
+    - debug
+
+- name: docker image {{ ansible_ci.node.image_name }} is present
+  docker_image:
+    name: "{{ ansible_ci.node.image_name }}"
+    path: "{{ role_path + '/files/' + ansible_ci.node.src }}"
+    state: present
+
+- name: docker container {{ ansible_ci.node.node_name }} is started
+  docker_container:
+    name: "{{ ansible_ci.node.node_name }}"
+    image: "{{ ansible_ci.node.image_name }}"
+    volumes: "{{ ansible_ci.node.volumes }}"
+    state: started
+    recreate: "{{ ansible_ci.node.recreate|default(false) }}"
+
+- name: add container {{ ansible_ci.node.node_name }} to inventory
+  changed_when: false
+  add_host:
+    groups: "{{ ansible_ci.node.member_of_groups }}"
+    name: "{{ container_name }}"
+    ansible_connection: docker
