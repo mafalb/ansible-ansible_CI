@@ -9,9 +9,9 @@
 - name: assertions
   assert:
     that:
-    - ansible_ci_test_name
-    - ansible_ci_node_type
-    - ansible_ci_node_image_name
+    - ansible_ci_test_name is defined
+    - ansible_ci_node_type is defined
+    - ansible_ci_node_image_name is defined
 
 - name: include tasks for node_type {{ ansible_ci.node.node_type }}
   include_tasks:
