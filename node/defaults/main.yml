@@ -6,6 +6,6 @@ ansible_ci:
     node_type: "{{ ansible_ci_node_type }}"
     node_name: "{{ ansible_ci_node_image_name + '_' + ansible_ci_test_name }}"
     src: "{{ ansible_ci[ansible_ci_node_type][ansible_ci_node_image_name].src }}"
-    volumes: "{{ ansible_ci[ansible_ci_node_type][ansible_ci_node_image_name].volumes|default(["/sys/fs/cgroup:/sys/fs/cgroup:ro"]) }}"
+    volumes: "{{ ansible_ci[ansible_ci_node_type][ansible_ci_node_image_name].volumes|default(['/sys/fs/cgroup:/sys/fs/cgroup:ro']) }}"
     member_of_groups: "{{ ansible_ci[ansible_ci_node_type][ansible_ci_node_image_name].member_of_groups|default([]) + [ ansible_ci_test_name ] }}"
 ...
