@@ -7,6 +7,8 @@
     name: docker-ce
     state: present
   register: _docker_package
+  until: _docker_package is succeeded
+  retries: 2
 
 - name: assert that the correct docker package is installed on travis-CI
   assert:
