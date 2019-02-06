@@ -17,6 +17,7 @@
     name: "{{ ansible_ci.node.node_name }}"
     image: "{{ ansible_ci.node.image_name }}"
     volumes: "{{ ansible_ci.node.volumes }}"
+    tmpfs: /run
     state: started
     recreate: "{{ ansible_ci.node.recreate|default(false) }}"
 
