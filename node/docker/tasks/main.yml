@@ -18,7 +18,6 @@
     name: "{{ image_name }}"
     path: "{{ role_path + '/files/' + src }}"
     state: present
-    source: build
 
 - name: docker container {{ container_name }} is started
   docker_container:
