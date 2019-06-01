@@ -21,5 +21,4 @@
     - ansible_ci_node_image_name is defined
 
 - name: include tasks for node_type {{ ansible_ci.node.node_type }}
-  include_tasks:
-    file: "{{ ansible_ci.node.node_type }}.yml"
+  include_tasks: "{{ ansible_ci.node.node_type }}.yml"
